@@ -1,5 +1,6 @@
 import os
-os.environ["CUDA_VISIBLE_DEVICES"]="-1"
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
+import torch
 import pickle
 import streamlit as st
 from PIL import Image
@@ -53,6 +54,8 @@ def final_pre_process_text(text, vectorizer):
 def main():
     st.header("Final Project: Troll Tweet Detection")
     #nltk.download('punkt')
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    st.write(torch.cuda.is_available())
     clf = load_model()
     vectorizer = load_vectorizer()
     selected_page = st.sidebar.radio("Choose page:", ["Model", "EDA"])
