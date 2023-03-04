@@ -1,6 +1,5 @@
 import os
-os.environ["CUDA_VISIBLE_DEVICES"]="0"
-os.environ["TOKENIZERS_PARALLELISM"]="true"
+os.environ["CUDA_VISIBLE_DEVICES"]="-1"
 import pickle
 import streamlit as st
 from PIL import Image
