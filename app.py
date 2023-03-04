@@ -2,10 +2,9 @@ import pickle
 import streamlit as st
 from PIL import Image
 import re
-import nltk
 from nltk import tokenize
 from sentence_transformers import SentenceTransformer
-nltk.download('punkt')
+
 
 def collapse_dots(input):
     # Collapse sequential dots
@@ -42,15 +41,14 @@ def load_vectorizer():
 
 def final_pre_process_text(text, vectorizer):
     model_input = [process_text(text)]
-    sent_tr = SentenceTransformer('all-MiniLM-L6-v2',device="cpu")
+    sent_tr = SentenceTransformer('all-MiniLM-L6-v2',device="cuda")
     model_input = sent_tr.encode(model_input)
     model_input = vectorizer.transform(model_input)
     return model_input
-    
+
 
 def main():
     st.header("Final Project: Troll Tweet Detection")
-    #nltk.download('punkt')
     clf = load_model()
     vectorizer = load_vectorizer()
     selected_page = st.sidebar.radio("Choose page:", ["Model", "EDA"])
@@ -61,7 +59,7 @@ def main():
             clean_txt = final_pre_process_text(in_txt, vectorizer)
             st.write(f"Text before pre-processing: {clean_txt}")
             st.write(f"Model output: {clf.predict_proba(clean_txt)[:, 1][0]}")
-    
+
     elif selected_page == "EDA":
         image_name = st.selectbox("Select type of EDA", ["Word Cloud of '0' class", 
                                                     "Word Cloud of '1' class",
@@ -79,14 +77,13 @@ def main():
             "Word Cloud of mentions for '0' class": "images/wc_mentions_0_class.png",
             "Word Cloud of mentions for '1' class": "images/wc_mentions_1_class.png"  
         }
-        
+
         if image_name:
             st.subheader(image_name)
             image = Image.open(image_path_dict.get(image_name))
             st.image(image, caption=image_name)
-        
+
 
 
 if __name__ == "__main__":
     main()
-
