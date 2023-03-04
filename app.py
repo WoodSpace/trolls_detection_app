@@ -43,7 +43,7 @@ def load_vectorizer():
 
 def final_pre_process_text(text, vectorizer):
     model_input = [process_text(text)]
-    sent_tr = SentenceTransformer('all-MiniLM-L6-v2',device="cuda")
+    sent_tr = SentenceTransformer('all-MiniLM-L6-v2')
     model_input = sent_tr.encode(model_input)
     model_input = vectorizer.transform(model_input)
     return model_input
