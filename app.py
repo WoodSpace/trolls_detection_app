@@ -2,6 +2,7 @@ import pickle
 import streamlit as st
 from PIL import Image
 import re
+import nltk
 from nltk import tokenize
 from sentence_transformers import SentenceTransformer
 
@@ -49,6 +50,7 @@ def final_pre_process_text(text, vectorizer):
 
 def main():
     st.header("Final Project: Troll Tweet Detection")
+    nltk.download('punkt')
     clf = load_model()
     vectorizer = load_vectorizer()
     selected_page = st.sidebar.radio("Choose page:", ["Model", "EDA"])
