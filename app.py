@@ -50,7 +50,7 @@ def final_pre_process_text(text, vectorizer):
 
 def main():
     st.header("Final Project: Troll Tweet Detection")
-    nltk.download('punkt')
+    #nltk.download('punkt')
     clf = load_model()
     vectorizer = load_vectorizer()
     selected_page = st.sidebar.radio("Choose page:", ["Model", "EDA"])
