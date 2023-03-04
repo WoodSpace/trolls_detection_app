@@ -2,6 +2,8 @@ import pickle
 import streamlit as st
 from PIL import Image
 import re
+import nltk
+nltk.download('punkt')
 from nltk import tokenize
 from sentence_transformers import SentenceTransformer
 
