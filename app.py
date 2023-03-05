@@ -50,6 +50,8 @@ def final_pre_process_text(text, vectorizer):
 
 
 def main():
+    st.set_page_config(page_title='Troll Tweet Detection',
+                    page_icon=":watermelon:")
     st.header("Final Project: Troll Tweet Detection")
     clf = load_model()
     vectorizer = load_vectorizer()
@@ -57,9 +59,9 @@ def main():
     if selected_page == "Model":
         in_txt = st.text_input("Please, put your text here...")
         if in_txt:
-            st.write(f"Text before pre-processing: {in_txt}")
+            #st.write(f"Text before pre-processing: {in_txt}")
             clean_txt = final_pre_process_text(in_txt, vectorizer)
-            st.write(f"Text before pre-processing: {clean_txt}")
+            #st.write(f"Text after pre-processing: {clean_txt}")
             st.write(f"Model output: {clf.predict_proba(clean_txt)[:, 1][0]}")
 
     elif selected_page == "EDA":
@@ -68,7 +70,11 @@ def main():
                                                     "Word Cloud of hashtages for '0' class",
                                                     "Word Cloud of hashtages for '1' class",
                                                     "Word Cloud of mentions for '0' class",
-                                                    "Word Cloud of mentions for '1' class"                                                    
+                                                    "Word Cloud of mentions for '1' class",
+                                                    "Distribution of authors",
+                                                    "Distribution of user names",
+                                                    "Distribution of tweet lenght for class '0'",
+                                                    "Distribution of tweet lenght for class '1'"                                                   
                                                     ]
                                                 )
         image_path_dict = {
@@ -77,7 +83,11 @@ def main():
             "Word Cloud of hashtages for '0' class": "images/wc_hshtg_0_class.png",
             "Word Cloud of hashtages for '1' class": "images/wc_hshtg_1_class.png",
             "Word Cloud of mentions for '0' class": "images/wc_mentions_0_class.png",
-            "Word Cloud of mentions for '1' class": "images/wc_mentions_1_class.png"  
+            "Word Cloud of mentions for '1' class": "images/wc_mentions_1_class.png",
+            "Distribution of authors": "images/authors.png",
+            "Distribution of user names": "images/users.png",
+            "Distribution of tweet lenght for class '0'": "images/0_class.png",
+            "Distribution of tweet lenght for class '1'": "images/1_class.png" 
         }
 
         if image_name:
