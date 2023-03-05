@@ -74,7 +74,8 @@ def main():
                                                     "Distribution of authors",
                                                     "Distribution of user names",
                                                     "Distribution of tweet lenght for class '0'",
-                                                    "Distribution of tweet lenght for class '1'"                                                   
+                                                    "Distribution of tweet lenght for class '1'",
+                                                    "ROC-AUC val and test scores"                                                
                                                     ]
                                                 )
         image_path_dict = {
@@ -87,7 +88,8 @@ def main():
             "Distribution of authors": "images/authors.png",
             "Distribution of user names": "images/users.png",
             "Distribution of tweet lenght for class '0'": "images/0_class.png",
-            "Distribution of tweet lenght for class '1'": "images/1_class.png" 
+            "Distribution of tweet lenght for class '1'": "images/1_class.png",
+            "ROC-AUC val and test scores": "images/roc_auc_metrics.png"
         }
 
         if image_name:
